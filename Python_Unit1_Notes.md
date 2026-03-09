@@ -1,6 +1,6 @@
 # PYTHON PROGRAMMING — UNIT 1 DETAILED NOTES
 
-> **Source:** PPT (cfb12c9e-d062-431e-b188-e67686b8bab2.pdf), supplementary PDFs (Comprehensions, List Ops, Dict Ops), Python official docs, PEP 634, and reference links.
+> **Source:** PPT (cfb12c9e-d062-431e-b188-e67686b8bab2.pdf), supplementary PDFs (Comprehensions, List Ops, Dict Ops), Python official docs, PEP 634, GeeksforGeeks (source of truth for function topics), and reference links.
 
 ---
 
@@ -988,6 +988,192 @@ The built-in `range()` function generates an **immutable sequence of numbers**.
 
 ---
 
+## 17. Unit 2 - Functions, Arguments, Recursion, Lambda, and Decorators
+
+> **Source of truth for this section:** GeeksforGeeks (topic-wise links included in this section and in the references).
+
+### 17.1 Defining and Calling Functions
+
+A function is a reusable block of code defined using `def`.
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+
+message = greet("Ritika")
+print(message)   # Hello, Ritika!
+```
+
+- `def` creates the function
+- Parameters are placeholders (`name`)
+- Calling the function executes it and may return a value
+
+### 17.2 Types of Arguments
+
+#### Positional Arguments
+Arguments are matched by position.
+
+```python
+def introduce(name, age):
+    print(f"{name} is {age} years old")
+
+introduce("Aman", 20)
+```
+
+#### Keyword Arguments
+Arguments are matched by parameter name.
+
+```python
+introduce(age=20, name="Aman")
+```
+
+#### Default Arguments
+Default values are used when an argument is not supplied.
+
+```python
+def power(base, exp=2):
+    return base ** exp
+
+print(power(5))      # 25
+print(power(5, 3))   # 125
+```
+
+#### Variable-Length Arguments (`*args`, `**kwargs`)
+
+- `*args` collects extra positional arguments as a tuple
+- `**kwargs` collects extra keyword arguments as a dictionary
+
+```python
+def show_args(*args, **kwargs):
+    print("args:", args)
+    print("kwargs:", kwargs)
+
+show_args(10, 20, 30, name="Ritika", grade="A")
+```
+
+### 17.3 Recursion
+
+Recursion is when a function calls itself. Every recursive solution should have:
+- a **base case** (stopping condition)
+- a **recursive case** (problem reduced toward base case)
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:   # base case
+        return 1
+    return n * factorial(n - 1)   # recursive case
+
+print(factorial(5))   # 120
+```
+
+### 17.4 Anonymous Functions (`lambda`)
+
+`lambda` creates small unnamed functions in a single expression.
+
+```python
+square = lambda x: x * x
+print(square(6))   # 36
+```
+
+General form:
+```python
+lambda arguments: expression
+```
+
+### 17.5 `map()`, `filter()`, and `reduce()`
+
+These are common functional-style tools in Python.
+
+```python
+from functools import reduce
+
+nums = [1, 2, 3, 4, 5]
+
+# map: transform each element
+squares = list(map(lambda x: x * x, nums))
+
+# filter: keep elements matching a condition
+evens = list(filter(lambda x: x % 2 == 0, nums))
+
+# reduce: combine all elements into one value
+total = reduce(lambda a, b: a + b, nums)
+
+print(squares)   # [1, 4, 9, 16, 25]
+print(evens)     # [2, 4]
+print(total)     # 15
+```
+
+### 17.6 First-Class Functions
+
+In Python, functions are first-class objects. This means functions can be:
+- assigned to variables
+- passed as arguments
+- returned from other functions
+
+```python
+def shout(text):
+    return text.upper()
+
+def apply(func, value):
+    return func(value)
+
+f = shout
+print(apply(f, "hello"))   # HELLO
+```
+
+### 17.7 Closures
+
+A closure is a function that remembers values from its enclosing scope even after the outer function has finished.
+
+```python
+def outer(msg):
+    def inner():
+        print(msg)
+    return inner
+
+greeter = outer("Welcome!")
+greeter()   # Welcome!
+```
+
+### 17.8 Decorators (Basic)
+
+A decorator is a function that takes another function and extends/modifies its behavior without changing the original function code.
+
+```python
+def decorator_func(func):
+    def wrapper():
+        print("Before function call")
+        func()
+        print("After function call")
+    return wrapper
+
+@decorator_func
+def say_hi():
+    print("Hi")
+
+say_hi()
+```
+
+### 17.9 Decorators with Arguments
+
+When the wrapped function accepts parameters, the wrapper should also accept `*args` and `**kwargs`.
+
+```python
+def log_calls(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__} with args={args}, kwargs={kwargs}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@log_calls
+def add(a, b):
+    return a + b
+
+print(add(10, 20))   # 30
+```
+
+---
+
 ## Topics NOT Found in the PPT
 
 The following topics from the user's requested list were **not covered** in the PPT (88 slides):
@@ -1015,6 +1201,19 @@ These links were provided in the `Links for python topics.docx` file and are use
 - **Python Official — argparse:** https://docs.python.org/3/library/argparse.html
 - **GeeksforGeeks — Command-Line Arguments:** https://www.geeksforgeeks.org/python/command-line-arguments-in-python/
 
+**GeeksforGeeks (Source of Truth for Function Topics):**
+- **Defining and Calling Functions:** https://www.geeksforgeeks.org/python-functions/
+- **Positional and Keyword Arguments:** https://www.geeksforgeeks.org/keyword-and-positional-argument-in-python/
+- **Default Arguments:** https://www.geeksforgeeks.org/default-arguments-in-python/
+- **`*args` and `**kwargs`:** https://www.geeksforgeeks.org/args-kwargs-python/
+- **Recursion in Python:** https://www.geeksforgeeks.org/recursion-in-python/
+- **Lambda with `map`, `filter`, `reduce`:** https://www.geeksforgeeks.org/python-lambda-anonymous-functions-filter-map-reduce/
+- **`reduce()` in Python:** https://www.geeksforgeeks.org/reduce-in-python/
+- **First-Class Functions:** https://www.geeksforgeeks.org/first-class-functions-python/
+- **Closures:** https://www.geeksforgeeks.org/closures-in-python/
+- **Decorators (Basic):** https://www.geeksforgeeks.org/decorators-in-python/
+- **Decorators with Parameters:** https://www.geeksforgeeks.org/decorators-with-parameters-in-python/
+
 **Additional Official References:**
 - **PEP 634 — Structural Pattern Matching:** https://peps.python.org/pep-0634/
 - **PEP 636 — Pattern Matching Tutorial:** https://peps.python.org/pep-0636/
@@ -1026,4 +1225,4 @@ These links were provided in the `Links for python topics.docx` file and are use
 
 ---
 
-*Notes generated from PPT analysis + Python official documentation + web references.*
+*Notes generated from PPT analysis + Python official documentation + GeeksforGeeks references + web references.*
