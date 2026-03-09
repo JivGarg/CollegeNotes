@@ -988,11 +988,11 @@ The built-in `range()` function generates an **immutable sequence of numbers**.
 
 ---
 
-## 17. Unit 2 - Functions, Arguments, Recursion, Lambda, and Decorators
+## Unit 2 - Functions, Arguments, Recursion, Lambda, and Decorators
 
 > **Source of truth for this section:** GeeksforGeeks (topic-wise links included in this section and in the references).
 
-### 17.1 Defining and Calling Functions
+### 1 Defining and Calling Functions
 
 A function is a reusable block of code defined using `def`.
 
@@ -1008,7 +1008,7 @@ print(message)   # Hello, Ritika!
 - Parameters are placeholders (`name`)
 - Calling the function executes it and may return a value
 
-### 17.2 Types of Arguments
+### 2 Types of Arguments
 
 #### Positional Arguments
 Arguments are matched by position.
@@ -1051,7 +1051,7 @@ def show_args(*args, **kwargs):
 show_args(10, 20, 30, name="Ritika", grade="A")
 ```
 
-### 17.3 Recursion
+### 3 Recursion
 
 Recursion is when a function calls itself. Every recursive solution should have:
 - a **base case** (stopping condition)
@@ -1066,7 +1066,7 @@ def factorial(n):
 print(factorial(5))   # 120
 ```
 
-### 17.4 Anonymous Functions (`lambda`)
+### 4 Anonymous Functions (`lambda`)
 
 `lambda` creates small unnamed functions in a single expression.
 
@@ -1080,7 +1080,7 @@ General form:
 lambda arguments: expression
 ```
 
-### 17.5 `map()`, `filter()`, and `reduce()`
+### 5 `map()`, `filter()`, and `reduce()`
 
 These are common functional-style tools in Python.
 
@@ -1103,7 +1103,7 @@ print(evens)     # [2, 4]
 print(total)     # 15
 ```
 
-### 17.6 First-Class Functions
+### 6 First-Class Functions
 
 In Python, functions are first-class objects. This means functions can be:
 - assigned to variables
@@ -1121,7 +1121,7 @@ f = shout
 print(apply(f, "hello"))   # HELLO
 ```
 
-### 17.7 Closures
+### 7 Closures
 
 A closure is a function that remembers values from its enclosing scope even after the outer function has finished.
 
@@ -1135,7 +1135,7 @@ greeter = outer("Welcome!")
 greeter()   # Welcome!
 ```
 
-### 17.8 Decorators (Basic)
+### 8 Decorators (Basic)
 
 A decorator is a function that takes another function and extends/modifies its behavior without changing the original function code.
 
@@ -1154,7 +1154,7 @@ def say_hi():
 say_hi()
 ```
 
-### 17.9 Decorators with Arguments
+### 9 Decorators with Arguments
 
 When the wrapped function accepts parameters, the wrapper should also accept `*args` and `**kwargs`.
 
@@ -1226,3 +1226,4 @@ These links were provided in the `Links for python topics.docx` file and are use
 ---
 
 *Notes generated from PPT analysis + Python official documentation + GeeksforGeeks references + web references.*
+
